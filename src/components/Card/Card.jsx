@@ -41,16 +41,16 @@ const styleGender = {
    marginTop: "-10px",
 }
 
-export default function Card(props) {
+export default function Card({name,status,species,gender,origin,image,onClose}) {
    return (
       <DivCard>
-         <Button onClick={props.onClose}>X</Button>
-         <h2 style={{textDecoration: "none", color: "white"}}>{props.name}</h2>
-         {/* {<h4>{props.status}</h4>} {/*Lo comento para no mostrarlo} */}
-         <h4 style={styleSpecie}>{props.species}</h4>
-         <h4 style={styleGender}>{props.gender}</h4>
-         {/* {<h4>{props.origin.name}</h4>} */}
-         <img style={{display: "block"}} src={props.image} alt="" />
+         <Button onClick={onClose}>X</Button>
+         <h2 style={{textDecoration: "none", color: "white"}}>{name}</h2>
+         {/* <h4>{status}</h4> */} {/*Lo comento para no mostrarlo} */}
+         <h4  style={styleSpecie}>{species}</h4>
+         <h4 style={styleGender}>{gender}</h4>
+         {/* <h4>{origin}</h4> */}
+         <img style={{display: "block"}} src={image}  alt="Not found" />
       </DivCard>
-   ); 
-}
+   );
+};
