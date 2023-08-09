@@ -1,47 +1,32 @@
 import './App.css';
 import Cards from './components/Cards/Cards.jsx';
 import Nav from './components/Nav/Nav';
-import characters, { Rick } from './data.js';
 import { useState } from 'react';
+import axios from 'axios';
+
 
 function App() {
-   const [characters, setCharacters] = useState([
-      {
-      id: 1,
-      name: 'Rick Sanchez',
-      status: 'Alive',
-      species: 'Human',
-      gender: 'Male',
-      origin: {
-         name: 'Earth (C-137)',
-         url: 'https://rickandmortyapi.com/api/location/1',
-      },
-      image: 'https://rickandmortyapi.com/api/character/avatar/1.jpeg',
-   },
-]);
-
-   // const onSearch = () => {
-   //    setCharacters(id) => ({
-   // //       [
-   // //       ...characters,
-   // //       id: 1,
-   // //       name: 'Rick Sanchez',
-   // //       status: 'Alive',
-   // //       species: 'Human',
-   // //       gender: 'Male',
-   // //       origin: {
-   // //          name: 'Earth (C-137)',
-   // //          url: 'https://rickandmortyapi.com/api/location/1',
-   // //       },
-   // //       image: 'https://rickandmortyapi.com/api/character/avatar/1.jpeg',
-   // //    ]
-   // })
-   // }
+   const [characters, setCharacters] = useState([]);
+   
+   function onSearch(id) {
+      axios(`https://rickandmortyapi.com/api/character/${id}`).then(({ data }) => {
+         if (data.name && !characters.find((character) => character.id === data.id)) {
+            setCharacters((characters) => [...characters, data]);
+         } else {
+            window.alert('¡No hay personajes con este ID!  ¡No se puede repetir el mismo personaje!');
+         }
+      });
+   }
+   
+   const onClose = (id) => {
+      const filteredCharacters = characters.filter((character) => character.id !== id)
+      setCharacters(filteredCharacters); // En lugar de pasar [filteredCharacters] como argumento a setCharacters,le paso simplemente filteredCharacters, ya que este es un array resultante del filtro y no necesitas envolverlo en otra matriz.
+   };
 
    return (
       <div className='App'>
-         <Nav /> 
-         <Cards characters={characters} />
+         <Nav onSearch={onSearch}/> 
+         <Cards characters={characters} onClose={onClose}/>
       </div>
    );
 }

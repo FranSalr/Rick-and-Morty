@@ -41,10 +41,11 @@ const styleGender = {
    marginTop: "-10px",
 }
 
-export default function Card({name,status,species,gender,origin,image,onClose}) {
+export default function Card({id,name,status,species,gender,origin,image,onClose}) {
    return (
       <DivCard>
-         <Button onClick={onClose}>X</Button>
+         <Button onClick={() => onClose(id)}>X</Button>
+         {/* onClick={()=>onClose()}: De esta forma estoy ejectutando la funcion onClose */}
          <h2 style={{textDecoration: "none", color: "white"}}>{name}</h2>
          {/* <h4>{status}</h4> */} {/*Lo comento para no mostrarlo} */}
          <h4  style={styleSpecie}>{species}</h4>

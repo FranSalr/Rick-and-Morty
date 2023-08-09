@@ -1,11 +1,10 @@
 import Card from "../Card/Card";
 import SContainer from "../SContainer/SContainer";
 
-export default function Cards({characters}) {
-  const onClose= () => {alert('Eliminar')};
+export default function Cards({characters, onClose}) {
   return (
     <SContainer>
-      {characters.map(({name, status, species, gender, origin, image, id}) => {
+      {characters.map(({id, name, status, species, gender, origin, image}) => {
         return (
         <Card
          name={name}
@@ -14,11 +13,11 @@ export default function Cards({characters}) {
          gender={gender}
          origin={origin}
          image={image}
-         key={id}
-         onClose={onClose}
+         id={id}
+         onClose={onClose} //onClose={onClose} 
         />
       );
         })}
     </SContainer>
-  );
+  );  
 } 
