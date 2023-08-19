@@ -1,9 +1,35 @@
-import React from "react"
-import SearchBar from "../SearchBar/SearchBar"
+import React from "react";
+import SearchBar from "../SearchBar/SearchBar";
+import { Link } from "react-router-dom";
+import styled from "styled-components";
 
- export default function Nav({onSearch}) {
- return (
+
+const Button = styled.button`
+  background-color: rgba(255, 222, 173, 0.6);
+  color: darkgreen;
+  border: 0px;
+  width: 80px;
+  height: 30px;
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: 15px;
+  margin: 15px 15px 0px 15px;
+  display: inline-block;
+  align-items: center;
+  justify-content: center;
+`;
+
+export default function Nav({ onSearch }) {
+  return (
     <div>
-        <SearchBar onSearch={onSearch} />
-  </div> 
- )};
+      <Link to={"/home"}> 
+       {/* ver si funciona sin las llaves .EJ: "/home" */}
+        <Button>HOME</Button>
+      </Link>
+      <Link to={"/about"}>
+        <Button>ABOUT</Button>
+      </Link>
+      <SearchBar onSearch={onSearch} />
+    </div>
+  );
+};
