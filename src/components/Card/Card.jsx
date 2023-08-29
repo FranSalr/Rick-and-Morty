@@ -1,5 +1,8 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { addFav, removeFav } from "../../redux/actions";
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 const DivCard = styled.div`
   display: inline-block;
@@ -42,28 +45,60 @@ const styleGender = {
   marginTop: "-10px",
 };
 
-export default function Card({
-  id,
-  name,
-  status,
-  species,
-  gender,
-  origin,
-  image,
-  onClose,
-}) {
+// {
+//   id,
+//   name,
+//   status,
+//   species,
+//   gender,
+//   origin,
+//   image,
+//   onClose,
+//   addFav,
+//   removeFav,
+//   myFavorites,
+// }
+
+export default function Card(props) {
+  const [isFav, setIsFav] = useState(false);
+  const dispatch = useDispatch();
+  const myFavorites = useSelector(state => state.myFavorites)
+
+  const handleFavorite = () => {
+    if (isFav) {
+      setIsFav(!isFav)
+      dispatch(removeFav(props.id))
+    } else {
+      setIsFav(!isFav)
+      dispatch(addFav(props))
+    }
+  };
+
+  useEffect(() => {
+    myFavorites.forEach((fav) => {
+       if (fav.id === props.id) {
+          setIsFav(true);
+       }
+    });
+ }, [myFavorites]);
+
   return (
     <DivCard>
-      <Button onClick={() => onClose(id)}>X</Button>
+      {isFav ? (
+        <Button onClick={handleFavorite}>❤️</Button>
+      ) : (
+        <Button onClick={handleFavorite}>🤍</Button>
+      )}
+      <Button onClick={() => props.onClose(props.id)}>X</Button>
       {/* onClick={()=>onClose()}: De esta forma estoy ejectutando la funcion onClose */}
-      <Link to={`/detail/${id}`}>
-      <h2 style={{ textDecoration: "none", color: "blue" }}>{name}</h2>
+      <Link to={`/detail/${props.id}`}>
+        <h2 style={{ textDecoration: "none", color: "blue" }}>{props.name}</h2>
       </Link>
-      {/* <h4>{status}</h4> */} {/*Lo comento para no mostrarlo} */}
-      <h4 style={styleSpecie}>{species}</h4>
-      <h4 style={styleGender}>{gender}</h4>
-      {/* <h4>{origin}</h4> */}
-      <img style={{ display: "block" }} src={image} alt="Not found" />
+      {/* <h4>{props.status}</h4> */} {/*Lo comento para no mostrarlo} */}
+      <h4 style={styleSpecie}>{props.species}</h4>
+      <h4 style={styleGender}>{props.gender}</h4>
+      {/* <h4>{props.origin}</h4> */}
+      <img style={{ display: "block" }} src={props.image} alt="Not found" />
     </DivCard>
   );
 }

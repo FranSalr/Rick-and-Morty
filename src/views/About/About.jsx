@@ -1,5 +1,5 @@
 import { useLocation } from "react-router-dom";
-import myImage from "../images/myImage.jpg"
+import myImage from "../../images/myImage.jpg";
 
 
 const About = () => {

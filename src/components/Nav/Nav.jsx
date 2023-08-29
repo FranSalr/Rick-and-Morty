@@ -4,11 +4,12 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 
+
 const Button = styled.button`
   background-color: rgba(255, 222, 173, 0.6);
   color: darkgreen;
   border: 0px;
-  width: 80px;
+  width: 120px;
   height: 30px;
   border-radius: 5px;
   font-weight: bold;
@@ -19,9 +20,12 @@ const Button = styled.button`
   justify-content: center;
 `;
 
-export default function Nav({ onSearch }) {
+export default function Nav({ onSearch, logout }) {
   return (
     <div>
+      <Link to={"/"}>
+        <Button onClick={logout}>LOGOUT</Button>
+      </Link>
       <Link to={"/home"}> 
        {/* ver si funciona sin las llaves .EJ: "/home" */}
         <Button>HOME</Button>
@@ -29,6 +33,9 @@ export default function Nav({ onSearch }) {
       <Link to={"/about"}>
         <Button>ABOUT</Button>
       </Link>
+      <Link to="/favorites">
+        <Button>FAVORITES</Button>
+        </Link>
       <SearchBar onSearch={onSearch} />
     </div>
   );
