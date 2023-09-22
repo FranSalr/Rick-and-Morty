@@ -1,0 +1,22 @@
+.success{
+    border: 2px solid green;
+    background-color: rgb(20, 189, 85);
+}
+
+.error{
+    border: 2px solid red;
+    background-color: rgb(202, 76, 76)
+}
+
+.form{
+    margin: 80px; /* Margen externo para separar el formulario de otros elementos */
+    padding: 10px; /* Espacio interno para el contenido del formulario */
+    border: 1px solid #ccc; /* Borde para resaltar el área del formulario */
+    border-radius: 8px; /* Bordes redondeados para suavizar las esquinas */
+    background-color: #afd115; /* Fondo blanco para el formulario */
+    box-shadow: 3px 2px 7px rgba(167, 243, 164, 0.1); /* Sombra para dar profundidad */
+    display: inline-block;
+    justify-content: center; /* Centrar horizontalmente */
+    align-items: center; /* Centrar verticalmente */
+    height: 70vh; /* Altura del 50% de la ventana del navegador */
+  }
