@@ -1,7 +1,10 @@
 const express = require("express");
+const { conn } = require("./db/connection");
 const server = express();
 const PORT = 3001;
 const router = require("./routes/index");
+// Libreria Dotenv -> guardar nuestras variables de entorno
+// .env
 
 server.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
@@ -15,14 +18,20 @@ server.use((req, res, next) => {
 });
 
 server.use(express.json());
-
 server.use("/rickandmorty", router);
 
-server.listen(PORT, () => {
-  console.log(`Server raised in port: ${PORT}`);
-});
+conn
+  .sync({
+    force: true,
+  })
+  .then(() => {
+    server.listen(PORT, () => {
+      console.log(`Server raised in port: ${PORT}`);
+    });
+  })
+  .catch((error) => console.log(error));
 
-//!!! CODIGO DE WEB SERVER
+//! Codigo de WEB SERVER
 // const http = require("http");
 // const getCharById = require("./controllers/getCharById");
 

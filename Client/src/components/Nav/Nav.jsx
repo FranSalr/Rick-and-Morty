@@ -26,8 +26,7 @@ export default function Nav({ onSearch, logout }) {
       <Link to={"/"}>
         <Button onClick={logout}>LOGOUT</Button>
       </Link>
-      <Link to={"/home"}> 
-       {/* ver si funciona sin las llaves .EJ: "/home" */}
+      <Link to={"/home"}>
         <Button>HOME</Button>
       </Link>
       <Link to={"/about"}>

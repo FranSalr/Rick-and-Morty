@@ -48,16 +48,16 @@ const styleGender = {
 export default function Card(props) {
   const [isFav, setIsFav] = useState(false);
   const dispatch = useDispatch();
-  const myFavorites = useSelector(state => state.myFavorites)
+  const myFavorites = useSelector(state => state.myFavorites);
 
   const handleFavorite = () => {
     if (isFav) {
-      setIsFav(!isFav)
-      dispatch(removeFav(props.id))
+      setIsFav(!isFav);
+      dispatch(removeFav(props.id));
     } else {
       debugger
-      setIsFav(!isFav)
-      dispatch(addFav(props))
+      setIsFav(!isFav);
+      dispatch(addFav(props));
     }
   };
 

@@ -20,8 +20,8 @@ function App() {
   const dispatch = useDispatch();
 
   //false DB
-  // const EMAIL = "ejemplo@gmail.com";
-  // const PASSWORD = "Password16";
+// const email = "ejemplo@gmail.com";
+// const password = "Password16";
 
   async function login(userData) {
     try {
